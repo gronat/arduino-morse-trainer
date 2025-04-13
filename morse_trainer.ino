@@ -1,7 +1,7 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
-#include <RotaryEncoder.h>
+#include "RotaryEncoder.h"
 
 // Display settings
 #define SCREEN_WIDTH 128
@@ -16,6 +16,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 #define DAH_PIN 5       // Moved paddle to regular pins
 #define BUZZER_PIN 6    // Moved buzzer
 #define ENCODER_BTN 7   // Kept the same
+#define LED_BUILTIN 13   // Added LED_BUILTIN
 
 // Morse code timing (in milliseconds)
 unsigned long ditLength = 50;  // Base unit for morse timing, adjusted by WPM
@@ -91,7 +92,7 @@ const char* morseTable[] = {
   ".--",  // W
   "-..-", // X
   "-.--", // Y
-  "--.."  // Z
+  "--..", // Z
 };
 
 // Add these global variables after other global variables
@@ -116,6 +117,7 @@ void setup() {
   pinMode(ENCODER_BTN, INPUT_PULLUP);
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);  // Enable pull-up for encoder
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);  // Enable pull-up for encoder
+  pinMode(LED_BUILTIN, OUTPUT); // Configure built-in LED
   
   // Initialize encoder with proper pins and interrupts
   encoder = new RotaryEncoder(ENCODER_PIN_A, ENCODER_PIN_B, RotaryEncoder::LatchMode::FOUR3);
@@ -316,11 +318,12 @@ void handlePaddles() {
   }
 }
 
+
 void processSequence() {
   // Convert morse sequence to character
-  for (int i = 0; i < 26; i++) {
+  for (int i = 0; i < 26; i++) {  // 26 letters + 10 numbers = 36 total
     if (currentMorseSequence == morseTable[i]) {
-      char letter = 'A' + i;
+        char letter = 'A' + i;  // For letters A-Z
       displayCharacter(letter);
       return;
     }
