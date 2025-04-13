@@ -55,7 +55,7 @@ int lastEncoderPos = 0;  // Track last encoder position
 
 // Timing variables
 unsigned long startTime = 0;
-unsigned long lastDitTime = 0;  // For debouncing
+unsigned long lastDitTime = 0;  // For debouncingF
 unsigned long lastDahTime = 0;  // For debouncing
 bool ditPressed = false;
 bool dahPressed = false;
