@@ -51,7 +51,7 @@ Nastavená hodnota se hned použije.
 
 ## Zvuk
 
-Zařízení také vydává zvuk (pípání) přes malý bzučák, abys slyšel rytmus stejně jako u reálné stanice.
+Zařízení také vydává zvuk (pípání) přes malý piezo reproduktor, abys slyšel rytmus stejně jako u reálné stanice.
 
 ## Konec
 
